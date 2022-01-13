@@ -1,10 +1,10 @@
 {
-  "name": "Zigbee2mqtt",
+  "name": "Zigbee2mqtt-2",
   "version": "1.22.2-1",
-  "slug": "zigbee2mqtt",
-  "description": "Use your ZigBee devices without the vendor's bridge or gateway",
+  "slug": "zigbee2mqtt-2",
+  "description": "Use your ZigBee devices without the vendor's bridge or gateway (2nd instance)",
   "uart": true,
-  "url": "https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt",
+  "url": "https://github.com/merdely/hassio-zigbee2mqtt-2/tree/master/zigbee2mqtt",
   "startup": "application",
   "services": [
     "mqtt:need"
@@ -24,29 +24,30 @@
     "config:rw"
   ],
   "ports": {
-    "8485/tcp": 8485
+    "8484/tcp": 8484
   },
   "ports_description": {
-    "8485/tcp": "Socat tcp-listen port"
+    "8484/tcp": "Socat tcp-listen port"
   },
   "options": {
-    "data_path": "/config/zigbee2mqtt",
+    "data_path": "/config/zigbee2mqtt-2",
     "external_converters": [],
     "devices": "devices.yaml",
     "groups": "groups.yaml",
     "homeassistant": true,
     "permit_join": false,
     "mqtt": {
-      "base_topic": "zigbee2mqtt"
+      "base_topic": "zigbee2mqtt-2"
     },
     "serial": {
-      "port": "/dev/ttyACM0"
+      "port": "tcp://tasmota-zigbee-bridge:8888",
+      "adapter": "ezsp"
     },
     "advanced": {
       "log_level": "warn",
-      "pan_id": 6754,
-      "channel": 11,
-      "network_key": [1, 3, 5, 7, 9, 11, 13, 15, 0, 2, 4, 6, 8, 10, 12, 13],
+      "pan_id": 6753,
+      "channel": 12,
+      "network_key": [2, 6, 10, 14, 18, 22, 26, 30, 0, 4, 8, 12, 16, 20, 24, 26],
       "availability_blocklist": [],
       "availability_passlist": []
     },
@@ -55,14 +56,14 @@
     "passlist": [],
     "queue": {},
     "frontend": {
-      "port": 8099
+      "port": 8098
     },
     "experimental": {},
     "availability": false,
     "socat": {
       "enabled": false,
       "master": "pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777",
-      "slave": "tcp-listen:8485,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5",
+      "slave": "tcp-listen:8484,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5",
       "options": "-d -d",
       "log": false
     }
