@@ -4,8 +4,8 @@
     </a>
     <br>
     <br>
-    <h1>Un-official Zigbee2MQTT Home Assistant app</h1>
-    <h2>Second Instance</h2>
+    <h1>Un-official Zigbee2MQTT Home Assistant app<br>
+    Second Instance</h1>
     <h3>This app allows a Home Assistant user to run two concurrent instances of the Zigbee2MQTT app</h3>
 </div>
 
