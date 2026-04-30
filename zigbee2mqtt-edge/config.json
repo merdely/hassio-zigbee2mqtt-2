@@ -1,11 +1,11 @@
 {
-  "name": "Zigbee2MQTT Edge",
+  "name": "Zigbee2MQTT Edge-2",
   "version": "edge",
-  "slug": "zigbee2mqtt_edge",
-  "description": "Development build of the Zigbee2MQTT app",
+  "slug": "zigbee2mqtt_edge-2",
+  "description": "Development build of the Zigbee2MQTT app (2nd instance)",
   "uart": true,
   "udev": true,
-  "url": "https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt-edge",
+  "url": "https://github.com/merdely/hassio-zigbee2mqtt-2/tree/master/zigbee2mqtt-edge",
   "startup": "application",
   "services": [
     "mqtt:need"
@@ -37,19 +37,19 @@
     }
   ],
   "ports": {
-    "8485/tcp": 8485,
-    "8099/tcp": null
+    "8485/tcp": 8484,
+    "8098/tcp": null
   },
   "ports_description": {
-    "8485/tcp": "Socat tcp-listen port",
+    "8484/tcp": "Socat tcp-listen port",
     "8099/tcp": "Frontend tcp-listen port"
   },
   "options": {
-    "data_path": "/config/zigbee2mqtt",
+    "data_path": "/config/zigbee2mqtt-2",
     "socat": {
       "enabled": false,
       "master": "pty,raw,echo=0,link=/tmp/ttyZ2M,mode=777",
-      "slave": "tcp-listen:8485,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5",
+      "slave": "tcp-listen:8484,keepalive,nodelay,reuseaddr,keepidle=1,keepintvl=1,keepcnt=5",
       "options": "-d -d",
       "log": false
     },
