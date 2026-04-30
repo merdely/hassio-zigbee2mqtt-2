@@ -1,0 +1,25 @@
+name: Sync upstream-master
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync upstream/master to origin/upstream-master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          upstream=$(gh repo view "${{ github.repository }}" \
+            --json parent --jq '"\(.parent.owner.login)/\(.parent.name)"')
+
+          git clone "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo
+          cd repo
+          git remote add upstream "https://github.com/${upstream}.git"
+          git fetch upstream master
+          git checkout upstream-master
+          git reset --hard upstream/master
+          git push origin upstream-master --force
